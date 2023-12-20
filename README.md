@@ -4,7 +4,7 @@
 "Sistem de control al temperaturii în sera in baza senzorililor de temperatura si a tunului 
 de aer cald prin reteaua LoRa"	
 
-_Cerinte:_
+_Cerințe:_
 1. preluarea datelor de la sensor
 2. contro Actuator.
 3. Controlul parametrului fizic
