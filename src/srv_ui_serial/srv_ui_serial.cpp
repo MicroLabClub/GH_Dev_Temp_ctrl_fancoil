@@ -170,7 +170,55 @@ void srv_ui_serial_in_loop()
 #endif
       break;
 
+    case 's': // UP
+#if defined USE_CTRL_TEMP_HEAT
+      if (ctrl_temp_heat_is_enabled())
+      {
+        ctrl_temp_heat_setpoint_up(0.1);
+        Serial.print("CTRL_TEMP_HEAT: Increase Setpoint:");
+        int sp = ctrl_temp_heat_get_setpoint();
+        Serial.println(sp);
+      }
+      else
+      {
+        dd_heater_on();
+        Serial.println("CTRL_TEMP_HEAT: Manual Heater opening");
+      }
+#elif defined USE_DD_HEATER
+      dd_heater_on();
+      Serial.println("DD_HEATER: Heater opening");
+#elif defined USE_ED_RELAY
+      ed_relay_on(ED_RELAY_ID_3);
+      Serial.println("DD_HEATER: Heater opening");
+#else
+      Serial.println("CTRL_TEMP_HEAT: OPEN/SP_Up Command <no action>");
+#endif
+      break;
 
+    case 'x': // Down
+#if defined USE_CTRL_TEMP_HEAT
+      if (ctrl_temp_heat_is_enabled())
+      {
+        ctrl_temp_heat_setpoint_dn(0.1);
+        Serial.print("CTRL_TEMP_HEAT: Decreasing Setpoint:");
+        int sp = ctrl_temp_heat_get_setpoint();
+        Serial.println(sp);
+      }
+      else
+      {
+        dd_heater_off();
+        Serial.println(" DD_HEATER: Heater Closing");
+      }
+#elif defined USE_DD_HEATER
+      dd_heater_off();
+      Serial.println("DD_HEATER: Heater closing");
+#elif defined USE_ED_RELAY
+      ed_relay_off(ED_RELAY_ID_3);
+      Serial.println(" ED_RELAY: Heater Closing");
+#else
+      Serial.println("CTRL_TEMP_HEAT: CLOSE/SP_Dn Command <no action>");
+#endif
+      break;
 
     default:
       break;

@@ -7,10 +7,10 @@
 #define ED_RELAY_1_PIN 0 //GPIO1
 #endif
 #ifndef ED_RELAY_2_PIN
-#define ED_RELAY_2_PIN 2 //GPIO2
+#define ED_RELAY_2_PIN 0 //GPIO2
 #endif
 #ifndef ED_RELAY_3_PIN
-#define ED_RELAY_3_PIN 0 // GPIO3
+#define ED_RELAY_3_PIN 2 // GPIO3
 #endif
 #ifndef ED_RELAY_4_PIN
 #define ED_RELAY_4_PIN 0 // GPIO4
